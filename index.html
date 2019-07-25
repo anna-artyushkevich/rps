@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock-Paper-Scissors</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500|Roboto:300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game">
+        <h1 class="header">
+            <span>Rock</span>
+            <span>&nbsp;-&nbsp;</span>
+            <span>Paper</span>
+            <span>&nbsp;-&nbsp;</span>
+            <span>Scissors</span>
+        </h1>
+        <p class="description">Rock Paper Scissors is a zero sum game that is usually played by two people using their hands and no tools.
+            The idea is to make shapes with an outstretched hand where each shape will have a certain degree of power and will lead to an outcome.</p>
+        <h4 class="title">SELECT YOUR BET</h4>
+        <div id="game" class="items">
+            <div class="item" data-item="rock">Rock</div>
+            <div class="item" data-item="paper">Paper</div>
+            <div class="item" data-item="scissors">Scissors</div>
+        </div>
+    </div>
+    <div id="modal" class="modal-wrapper">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="close"></div>
+                <div class="modal-header" data-header="" data-result="">
+                </div>
+                <div class="modal-body">
+                    <div class="item item-user" data-item="">Your bet</div>
+                    <div class="item item-bot" data-item="">
+                    </div>
+                    <div class="item item-win" data-item=""></div>
+                    <button class="btn">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
