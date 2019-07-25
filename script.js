@@ -2,7 +2,7 @@ window.onload = () => {
     // predefined bets
     const item = ["rock", "paper", "scissors"];
     // predefined modal messages
-    const messages = (item) => ({
+    const messages = (item = undefined) => ({
         userBet: { header: "WAITING CURB’S CHOOSE" },
         botBet: {
             userLost: {
@@ -90,27 +90,28 @@ window.onload = () => {
         const modalItemBot = modal.querySelector(".item-bot");
         const modalItemWin = modal.querySelector(".item-win");
 
-        resultClass
+        resultClass !== undefined
             && (resultClass
                 ? modal.classList.add("result")
                 : modal.classList.remove("result"))
-        if (header)
+        if (header !== undefined)
             modalHeader.dataset.header = header;
-        if (result)
+        if (result !== undefined)
             modalHeader.dataset.result = result;
 
-        items
+        items !== undefined
             && [
                 modalItemUser,
                 modalItemBot,
                 modalItemWin
                 ].forEach((elem, index) => {
                     const id = elem.id;
-                    if (items[id])
+                    if (items[id] !== undefined) {
                         elem.dataset.item = items[id];
+                    }
                 });
 
-        visibleClass
+        visibleClass !== undefined
             && (visibleClass
                 ? modal.classList.add("visible")
                 : modal.classList.remove("visible"))
@@ -146,7 +147,7 @@ window.onload = () => {
                         apiBet = text.replace(/"/g, "");
                     })
                     .catch(err => {
-                        console.error(err); //
+                        //console.error(err); //
                     });
 
                 timeoutBotBet = setTimeout(() => {
