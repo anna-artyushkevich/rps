@@ -2,7 +2,7 @@ window.onload = () => {
     // predefined bets
     const item = ["rock", "paper", "scissors"];
     // predefined modal messages
-    const messages = (item = undefined) => ({
+    const messages = (item) => ({
         userBet: { header: "WAITING CURB’S CHOOSE" },
         botBet: {
             userLost: {
@@ -83,6 +83,11 @@ window.onload = () => {
                 itemWin
             }
         } = opt;
+        console.log("visibleClass", visibleClass);
+        console.log("resultClass", resultClass);
+        console.log("header", header);
+        console.log("result", result);
+        console.log("items", items);
 
         const modal = document.getElementById("modal");
         const modalHeader = modal.querySelector(".modal-header");
@@ -106,6 +111,7 @@ window.onload = () => {
                 modalItemWin
                 ].forEach((elem, index) => {
                     const id = elem.id;
+                    console.log("items[id]", items[id]);
                     if (items[id] !== undefined) {
                         elem.dataset.item = items[id];
                     }
