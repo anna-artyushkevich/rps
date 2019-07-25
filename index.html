@@ -7,6 +7,7 @@
     <title>Rock-Paper-Scissors</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500|Roboto:300&display=swap" rel="stylesheet">
     <link href="./styles.css" rel="stylesheet" type="text/css">
+    <script src="./script.js"></script>
 </head>
 <body>
     <div class="game">
@@ -33,13 +34,13 @@
                 <div class="modal-header" data-header="" data-result="">
                 </div>
                 <div class="modal-body">
-                    <div class="item item-user" data-item="">Your bet</div>
-                    <div class="item item-bot" data-item="">
+                    <div id="itemUser" class="item item-user" data-item="">Your bet</div>
+                    <div id="itemBot" class="item item-bot" data-item="">
                         <img src='./img/curb_logo.png'
                             srcset='./img/curb_logo.png 1x,
                             ./img/curb_logo@2x.png 2x'/>
                     </div>
-                    <div class="item item-win" data-item=""></div>
+                    <div id="itemWin" class="item item-win" data-item=""></div>
                     <button class="btn">Ok</button>
                 </div>
             </div>
