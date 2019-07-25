@@ -49,8 +49,9 @@ window.onload = () => {
         let winner = {};
         const ui = item.indexOf(userBet);
         const bi = item.indexOf(botBet);
+        const length = item.length - 1;
 
-        if ((!ui && bi === 2) || (!bi && ui === 2)) {
+        if ((!ui && bi === length) || (!bi && ui === length)) {
             if (ui > bi) {
                 winner = { result: "userLost", item: botBet };
             } else {
@@ -67,6 +68,8 @@ window.onload = () => {
         }
         return winner;
     };
+    // variables for clearing timeout
+    let timeoutBotBet, timeoutResult;
     // change modal DOM object
     const changeModal = (opt) => {
         const {
@@ -147,7 +150,7 @@ window.onload = () => {
                         //console.error(err); //
                     });
 
-                setTimeout(() => {
+                timeoutBotBet = setTimeout(() => {
                     // get bot bet
                     let botBet =
                         apiBet && item.includes(apiBet)
@@ -162,7 +165,7 @@ window.onload = () => {
                     const winner = getWinner(userBet, botBet);
 
                     // show result
-                    setTimeout(() => {
+                    timeoutResult = setTimeout(() => {
                         header = messages().botBet[winner.result].header;
                         const result = messages(winner.item).botBet[
                             winner.result
@@ -177,4 +180,15 @@ window.onload = () => {
                 }, 2000);
             }
         });
+    // close modal click listener
+    [".close", ".btn"].forEach(elem => {
+        const modal = document.getElementById("modal");
+        modal.querySelector(elem)
+            .addEventListener("click", event => {
+                modal.classList.remove("visible");
+                [timeoutResult, timeoutBotBet].forEach(timeout => {
+                    clearTimeout(timeout);
+                });
+            });
+    });
 };
