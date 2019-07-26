@@ -23,9 +23,12 @@ window.onload = () => {
     const getApiBet = () => {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
+            // used proxy https://yacdn.org/serve/ due to
+            // Access to XMLHttpRequest at 'https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw'
+            // from origin 'https://anna-artyushkevich.github.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
             xhr.open(
                 "GET",
-                "https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw"
+                "https://yacdn.org/serve/https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw"
             );
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4) {
