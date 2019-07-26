@@ -25,7 +25,7 @@ window.onload = () => {
             let xhr = new XMLHttpRequest();
             xhr.open(
                 "GET",
-                "https://yacdn.org/serve/https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw"
+                "https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw"
             );
             xhr.onreadystatechange = function() {
                 if (this.readyState === 4) {
@@ -153,7 +153,7 @@ window.onload = () => {
                         apiBet = text.replace(/"/g, "");
                     })
                     .catch(err => {
-                        //console.error(err); //
+                        console.error(err); //
                     });
 
                 timeoutBotBet = setTimeout(() => {
