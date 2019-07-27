@@ -74,17 +74,13 @@ window.onload = () => {
     // variables for clearing timeout
     let timeoutBotBet, timeoutResult;
     // change modal DOM object
-    const changeModal = (opt) => {
+    const changeModal = opt => {
         const {
             visibleClass,
             resultClass,
             header,
             result,
-            items = {
-                itemUser,
-                itemBot,
-                itemWin
-            }
+            items
         } = opt;
 
         const modal = document.getElementById("modal");
@@ -93,31 +89,25 @@ window.onload = () => {
         const modalItemBot = modal.querySelector(".item-bot");
         const modalItemWin = modal.querySelector(".item-win");
 
-        resultClass !== undefined
-            && (resultClass
+        resultClass &&
+            (resultClass === "add"
                 ? modal.classList.add("result")
-                : modal.classList.remove("result"))
-        if (header !== undefined)
-            modalHeader.dataset.header = header;
-        if (result !== undefined)
-            modalHeader.dataset.result = result;
+                : modal.classList.remove("result"));
+        if (header) modalHeader.dataset.header = header;
+        if (result) modalHeader.dataset.result = result === "clear" ? "" : result;
 
-        items !== undefined
-            && [
-                modalItemUser,
-                modalItemBot,
-                modalItemWin
-                ].forEach((elem, index) => {
-                    const id = elem.id;
-                    if (items[id] !== undefined) {
-                        elem.dataset.item = items[id];
-                    }
-                });
+        items &&
+            [modalItemUser, modalItemBot, modalItemWin].forEach((elem, index) => {
+                const id = elem.id;
+                if (items[id]) {
+                    elem.dataset.item = items[id] === "clear" ? "" : items[id];
+                }
+            });
 
-        visibleClass !== undefined
-            && (visibleClass
+        visibleClass &&
+            (visibleClass === "add"
                 ? modal.classList.add("visible")
-                : modal.classList.remove("visible"))
+                : modal.classList.remove("visible"));
     };
     // start game click listener
     document
@@ -129,19 +119,19 @@ window.onload = () => {
                 // clear modal data-attributes
                 let header = messages().userBet.header;
                 changeModal({
-                    visibleClass: false,
-                    resultClass: false,
+                    visibleClass: "remove",
+                    resultClass: "remove",
                     header: header,
-                    result: "",
-                    items: {itemUser: "", itemBot: "", itemWin: ""}
+                    result: "clear",
+                    items: { itemUser: "clear", itemBot: "clear", itemWin: "clear" }
                 });
 
                 // start game
                 // initialize data-attributes - user bet
                 let userBet = target.dataset.item;
                 changeModal({
-                    visibleClass: true,
-                    items: {itemUser: userBet}
+                    visibleClass: "add",
+                    items: { itemUser: userBet }
                 });
 
                 let apiBet = "";
@@ -174,7 +164,7 @@ window.onload = () => {
                             winner.result
                         ].result;
                         changeModal({
-                            resultClass: true,
+                            resultClass: "add",
                             header: header,
                             result: result,
                             items: {itemWin: winner.item}
